@@ -1,5 +1,7 @@
 # GitHub Issues Wall Display
 
+<img width="1919" height="955" alt="Screenshot 2026-04-12 235044" src="https://github.com/user-attachments/assets/ae81ffb5-998f-4c3d-a9ef-896bf24d228d" />
+
 A real-time GitHub issues monitoring dashboard optimized for wall displays, TV screens, and team dashboards. Track the most interacted-with issues across any public or private repository.
 
 ![Dark Theme](https://img.shields.io/badge/theme-dark-0d1117?style=flat-square)

@@ -1,0 +1,27 @@
+{
+  "name": "github-issues-wall",
+  "version": "1.0.0",
+  "description": "Real-time GitHub issues monitoring dashboard optimized for wall displays. Track the most interacted-with issues across any repository.",
+  "keywords": [
+    "github",
+    "issues",
+    "dashboard",
+    "wall-display",
+    "monitoring",
+    "real-time",
+    "devtools"
+  ],
+  "author": "Abdul",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdul/github-issues-wall"
+  },
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx serve . -l 3000 --no-clipboard"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

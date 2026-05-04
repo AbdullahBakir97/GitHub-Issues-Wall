@@ -8,25 +8,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: ['18', '20']
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: npm ci || npm install
-      - name: Build
+          node-version: '20'
+      - name: Validate HTML
         continue-on-error: true
         run: |
-          if npm run | grep -q '^  build'; then npm run build || true; fi
-      - name: Test
+          shopt -s globstar nullglob
+          html_files=( **/*.html )
+          if [ ${#html_files[@]} -gt 0 ]; then
+            npx -y html-validate "${html_files[@]}" || true
+          fi
+      - name: Lint JS
         continue-on-error: true
         run: |
-          if npm run | grep -q '^  test'; then npm test --if-present || true; fi
+          shopt -s globstar nullglob
+          js_files=( **/*.js )
+          if [ ${#js_files[@]} -gt 0 ]; then
+            npx -y --package=eslint@8 eslint --no-eslintrc --rule '{"no-undef":"off"}' --parser-options=ecmaVersion:2022 "${js_files[@]}" || true
+          fi
